@@ -1,0 +1,1170 @@
+/* Réinitialisation de base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Coupe tout ce qui dépasse horizontalement sans scroll */
+html,
+body {
+    max-width: 100%;
+    overflow-x: hidden; 
+}
+
+body {
+    display: flex; /* Aligne le header et le main côte à côte */
+    min-height: 100vh;
+    font-family: sans-serif;
+}
+
+/* Style de la barre latérale */
+.header {
+    position: fixed; /* Indispensable pour que .blurred-image se cale par rapport au header */
+    width: 300px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden; /* Empêche l'image de dépasser du header */
+    z-index: 1;
+}
+
+.blurred-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('/image/background.png') no-repeat center center / cover;
+    z-index: -1; /* Place l'image derrière le texte */
+    filter: blur(5px); /* Optionnel : pour l'effet de flou cyber */
+    transform: scale(1.1); /* Zoom léger pour éviter les bords blancs du flou */
+}
+
+/* Style du contenu principal */
+.content {
+    flex: 1; /* Prend tout l'espace restant à droite */
+    padding: 2rem;
+    margin-left: 300px; /* IMPORTANT : On décale le contenu de la largeur du header */
+    color: white;
+    background: black;
+}
+
+/* Écran de chargement Kali */
+.kali-boot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    padding: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    animation: fadeOut 0.5s ease forwards 3.5s; /* Disparaît après 3.5s */
+}
+
+.terminal-text p {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+    opacity: 0;
+    animation: typing 0.1s steps(1) forwards;
+}
+
+/* On décale l'apparition de chaque ligne */
+.terminal-text p:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.terminal-text p:nth-child(2) {
+    animation-delay: 0.4s;
+}
+
+.terminal-text p:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+.terminal-text p:nth-child(4) {
+    animation-delay: 0.8s;
+}
+
+.terminal-text p:nth-child(5) {
+    animation-delay: 1.2s;
+    color: #fff;
+}
+
+.terminal-text p:nth-child(6) {
+    animation-delay: 1.5s;
+}
+
+.terminal-text p:nth-child(7) {
+    animation-delay: 1.8s;
+}
+
+.terminal-text p.command {
+    animation-delay: 2.2s;
+    color: #00d4ff;
+    font-weight: bold;
+}
+
+/* Barre de chargement */
+.loading-bar {
+    width: 200px;
+    height: 2px;
+    background: #333;
+    margin-top: 10px;
+    opacity: 0;
+    animation: fadeIn 0.1s forwards 2.5s;
+}
+
+.loading-bar span {
+    display: block;
+    height: 100%;
+    background: #00ff00;
+    width: 0;
+    animation: load 0.8s ease-in-out forwards 2.6s;
+}
+
+/* Cache le contenu au début */
+.real-content {
+    opacity: 0;
+    animation: fadeInContent 1s ease forwards 3.8s; /* Apparaît juste après le boot */
+}
+
+/* S'assurer que le body ne peut pas scroller pendant le boot */
+body.loading {
+    overflow: hidden;
+}
+
+/* --- ANIMATIONS KEYFRAMES --- */
+@keyframes fadeInContent {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes typing {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+@keyframes load {
+    to {
+        width: 100%;
+    }
+}
+
+/* Quelques ajustements pour ton image de profil */
+.user img {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%; /* Rend l'image parfaitement ronde */
+    object-fit: cover;
+    border: 3px solid #0066ff; /* Le détourage */
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.5); /*box-shadow: 0 0 15px rgba(0, 212, 255, 0.5);*/
+
+    margin-bottom: 3rem;
+}
+
+.user {
+    display: flex;
+    flex-direction: column; /* Aligne les éléments verticalement */
+    align-items: center; /* Centre horizontalement sur l'axe secondaire */
+    text-align: center; /* Centre le texte (h3 et p) */
+    width: 100%; /* S'assure que le bloc prend toute la largeur du header */
+    color: white;
+    font-size: 1.5rem;
+    margin-bottom: 2rem; /* Ajoute un peu d'espace avant la navigation */
+}
+
+.navbar {
+    display: flex;
+    flex-direction: column; /* Liens les uns sous les autres */
+    margin-top: 2rem;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: white;
+    padding: 10px 0;
+    font-size: 1.3rem;
+    transition: 0.3s;
+}
+
+.navbar a:hover {
+    color: #ff0000;
+}
+
+.home {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* padding en dessous */
+    padding-bottom: 60px;
+    min-height: 100vh;
+    overflow-x: hidden; /* Évite un scroll horizontal indésirable */
+}
+
+.terminal-static {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+    font-weight: bold; /* Gras */
+}
+
+.prompt {
+    color: #ff0000ca;
+    margin-right: 8px;
+}
+
+.welcome-box {
+    width: 100%;
+}
+
+.image-container {
+    position: relative; /* Indispensable pour positionner le bouton dessus */
+    display: inline-block;
+    width: 100%;
+}
+
+.welcome-img {
+    width: 100%; /* L'image prend toute la largeur disponible */
+    height: auto; /* Garde les proportions */
+    display: block;
+    object-fit: cover;
+}
+
+.btn-cv {
+    position: absolute;
+    bottom: 40%; /* Distance par rapport au bas de l'image */
+
+    left: 50%;
+    transform: translateX(-50%);
+
+    background-color: #000;
+    color: white;
+    padding: 20px 45px;
+    border: 1px solid #ff0000; /* Rappel du rouge */
+    border-radius: 50px; /* Coins arrondis */
+    text-decoration: none;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+/* --- Effet Hover Commun (CV et Réseaux) --- */
+.btn-cv:hover,
+.social-btn:hover {
+    background-color: #ff0000; /* Devient rouge plein */
+    color: #ffffff; /* Texte blanc */
+    border-color: #ffffff; /* Bordure devient blanche pour le contraste */
+    transform: translateX(-50%) translateY(-5px) scale(1.05); /* S'élève et grossit */
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.7); /* Halo lumineux rouge */
+}
+
+/* Correction spécifique pour les icônes réseaux car elles sont dans un conteneur flex */
+.social-icons .social-btn:hover {
+    /* On annule le translateX(-50%) car ils ne sont pas en position absolue eux-mêmes */
+    transform: translateY(-5px) scale(1.05);
+}
+
+/* Conteneur des réseaux sociaux */
+.social-icons {
+    position: absolute;
+    bottom: 25%; /* Placé plus bas que le bouton CV */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 20px; /* Espace entre les deux boutons */
+}
+
+/* Style commun aux petits boutons réseaux */
+.social-btn {
+    background-color: rgba(0, 0, 0, 0.7); /* Fond noir semi-transparent */
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-family: 'Courier New', monospace;
+    font-size: 2rem;
+    border: 1px solid #ff0000; /* Rappel du rouge */
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.whoami {
+    padding: 20px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.whoami .head {
+    font-size: 3.5rem;
+    color: #fff;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.dynamic-text {
+    font-size: 2.5rem;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.typed {
+    color: #ff0000; /* Rouge comme ton prompt root */
+    font-weight: bold;
+}
+
+/* Le curseur qui clignote */
+.cursor {
+    color: #ff0000;
+    animation: blink 0.8s infinite;
+    font-weight: bold;
+}
+
+.description-text {
+    width: 100%;
+    max-width: 100%;
+    line-height: 1.6; /* Un interligne un peu plus serré pour les grandes polices */
+    color: #e8e7e7;
+    font-family: 'Courier New', monospace;
+    font-size: 1.4rem; /* Taille du texte */
+    font-weight: 500; /* Optionnel : un peu plus épais pour la lisibilité */
+    text-align: justify;
+    margin-top: 30px; /* Plus d'espace au-dessus pour laisser respirer le texte dynamique */
+    padding-bottom: 60px; /* padding en dessous */
+}
+
+/* --- ANIMATIONS KEYFRAMES --- */
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+.log-switcher {
+    width: 100%;
+    margin-top: 50px;
+    margin-bottom: 80px;
+    border: 1px solid #333;
+    padding: 20px;
+    background: rgba(10, 10, 10, 0.8);
+    font-family: 'Courier New', monospace;
+}
+
+.terminal-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.log-navigation {
+    display: flex;
+    justify-content: center; /* Centre le groupe complet */
+    align-items: center;
+    gap: 30px; /* Espace précis entre les flèches et le texte */
+    border-top: 1px solid #4a4a4a;
+    border-bottom: 1px solid #4a4a4a;
+    padding: 15px 0;
+    margin-bottom: 25px;
+    background: rgba(20, 20, 20, 0.5); /* Léger fond pour marquer la barre */
+}
+
+.nav-btn {
+    background: none;
+    border: 1px solid transparent; /* Prépare une bordure pour le hover */
+    color: #ff0000;
+    font-family: inherit;
+    font-size: 1.4rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 5px 15px;
+}
+
+.historique {
+    background: none;
+    border: none;
+    color: #fff;
+    font-family: inherit;
+    font-size: 1.2rem;
+}
+
+.nav-btn:hover {
+    color: #fff;
+    border-color: #ff0000; /* Encadre la flèche au survol */
+    background: rgba(255, 0, 0, 0.1);
+    text-shadow: 0 0 8px #ff0000;
+}
+
+.log-counter {
+    color: #fff;
+    font-size: 1.2rem;
+    letter-spacing: 3px;
+    min-width: 150px; /* Empêche le saut de texte si les chiffres changent */
+    text-align: center;
+}
+
+.log-viewport {
+    overflow: hidden;
+    position: relative;
+    min-height: 200px;
+}
+
+.log-item {
+    transition: transform 0.4s ease-in-out, opacity 0.4s;
+}
+
+.log-item.slide-out {
+    transform: translateX(-100%);
+    opacity: 0;
+}
+
+.log-item.slide-in {
+    transform: translateX(100%);
+    opacity: 0;
+}
+
+.log-item p {
+    margin: 8px 0;
+    font-size: 1.1rem;
+}
+
+.label {
+    color: white;
+}
+
+.val {
+    color: #00d4ff;
+    font-weight: bold;
+}
+
+.log-details {
+    margin-top: 15px;
+    color: #00ff00;
+}
+
+.mission_link, .mission_link:link, .mission_link:visited, .mission_link:focus, .mission_link:hover, .mission_link:active{
+    color: #00ff00 !important;
+}
+
+/* Style des miniatures */
+.mission-gallery {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+    border-top: 1px dashed #333;
+    padding-top: 15px;
+}
+
+.thumb {
+    width: 120px;
+    height: 80px;
+    object-fit: cover;
+    border: 1px solid #ff0000;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform 0.3s, filter 0.3s;
+    filter: grayscale(80%); /* Look un peu plus sombre par défaut */
+}
+
+.thumb:hover {
+    transform: scale(1.1);
+    filter: grayscale(0%);
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+}
+
+/* Style de la modale (Plein écran) */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Important pour le pan manuel */
+}
+
+.modal-content {
+    max-width: 80%;
+    max-height: 80%;
+    border: 1px solid #ff0000;
+    cursor: zoom-in;
+    user-select: none; /* Empêche la sélection de l'image pendant le drag */
+    -webkit-user-drag: none; /* Empêche le drag par défaut du navigateur */
+    transition: transform 0.1s ease-out; /* Légère fluidité */
+    will-change: transform;
+}
+
+.modal:active {
+    cursor: grabbing;
+}
+
+@keyframes zoom {
+    from {
+        transform: scale(0)
+    }
+
+    to {
+        transform: scale(1)
+    }
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #ff0000;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+.skill-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.skill-item img {
+    width: 50px;
+    height: 50px;
+    transition: all 0.3s ease;
+}
+
+/* Nom du langage (caché par défaut) */
+.skill-name {
+    position: absolute;
+    bottom: -30px; /* Apparaît en dessous */
+    background: #ff0000;
+    color: white;
+    padding: 2px 8px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+    z-index: 10;
+}
+
+.skill-item:hover {
+    transform: translateY(-5px);
+}
+
+.skill-item:hover img {
+    filter: grayscale(0%) brightness(1.2); /* L'icône reprend ses couleurs */
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.2);
+}
+
+.skill-item:hover .skill-name {
+    opacity: 1;
+    bottom: -35px; /* Petit mouvement de montée */
+}
+
+.tools-container {
+    margin-bottom: 80px;
+    padding: 20px;
+    background: rgba(5, 5, 5, 0.7);
+}
+
+.tools-table {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.tool-row {
+    display: grid;
+    grid-template-columns: 250px 1fr; /* 250px pour la catégorie, le reste pour les logos */
+    align-items: center;
+    border-bottom: 1px solid #333;
+    padding: 15px 0;
+}
+
+.tool-category {
+    font-family: 'Courier New', monospace;
+    color: #ff0000;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-left: 3px solid #ff0000;
+    padding-left: 15px;
+}
+
+.tool-icons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* Style pour les outils sans logo SVG officiel */
+.tool-placeholder {
+    width: 45px;
+    height: 45px;
+    background: #111;
+    border: 1px solid #333;
+    color: #555;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.8rem;
+    transition: all 0.3s ease;
+}
+
+.skill-item:hover .tool-placeholder {
+    border-color: #ff0000;
+    color: #ff0000;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+}
+
+
+/* Style pour les badges */
+section {
+    margin-bottom: 80px;
+}
+
+/*HTB ACADEMY*/
+.profil-name {
+    animation-delay: 2.2s;
+    color: #00d4ff;
+    font-weight: bold;
+}
+
+/* Container de la grille */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 30px;
+    padding: 20px 0;
+    justify-items: center;
+}
+
+/* Item de badge ajusté à la taille de l'image */
+.badge-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    width: 140px; /* Légèrement plus large que l'image pour respirer */
+}
+
+.badge-img {
+    width: 110px;
+    height: 110px;
+    object-fit: contain;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    filter: drop-shadow(0 0 2px rgba(159, 239, 0, 0.2));
+}
+
+/* Conteneur de l'image pour positionner le tooltip */
+.badge-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+/* Ajustement du Tooltip pour ne pas toucher l'image */
+.badge-tooltip {
+    visibility: hidden;
+    /*width: 180px; /* Un peu plus large pour le confort de lecture */
+    width: 225px; /* Un peu plus large pour le confort de lecture */
+    background-color: rgba(10, 10, 10, 0.98);
+    color: #9fef00;
+    text-align: center;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    padding: 12px;
+    border: 1px solid #9fef00;
+    position: absolute;
+    z-index: 100;
+    bottom: 110%; /* Ajusté car l'image est plus grande */
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Flèche du tooltip */
+.badge-tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #9fef00 transparent transparent transparent;
+}
+
+/* Nom en dessous */
+.badge-label {
+    margin-top: 18px;
+    font-size: 1rem;
+    color: #fff;
+    font-family: 'Courier New', monospace;
+    text-align: center;
+    line-height: 1.3;
+    font-weight: bold;
+    max-width: 130px;
+}
+
+.badge-item:hover .badge-img {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 10px #9fef00);
+}
+
+.badge-item:hover .badge-tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+.badge-item:hover .badge-label {
+    color: #9fef00;
+}
+
+.badge-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.badge-btn {
+    background: transparent;
+    border: 1px solid #575757;
+    color: white;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-family: 'Courier New', monospace;
+    font-size: 1rem;
+    transition: all 0.3s;
+}
+
+.badge-btn.active,
+.badge-btn:hover {
+    border: 3px solid #ff0000;
+    color: #fff;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
+}
+
+.tab-content {
+    display: none; /* Caché par défaut */
+    padding: 20px 0;
+    animation: fadeIn 0.5s ease;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Container de la grille unifié */
+.gallery-grid {
+    display: grid; /* On privilégie grid pour un alignement parfait */
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 40px;
+    padding: 20px 0;
+    justify-items: center;
+}
+
+.hidden {
+    display: none;
+}
+
+.view-more {
+    display: block;
+    margin: 20px auto;
+    background: none;
+    border: 1px dashed #ff0000;
+    color: #ff0000;
+    padding: 5px 20px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+/* Effet au survol */
+.view-more:hover {
+    background-color: rgba(255, 0, 0, 0.1);
+    border-style: solid; /* Passe de pointillé à plein */
+    color: #fff;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.5), inset 0 0 10px rgba(255, 0, 0, 0.3);
+    transform: scale(1.05);
+    text-shadow: 0 0 5px #fff;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/*HTB*/
+.htb-stats-display {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0; /* Plus d'espace autour de l'image */
+}
+
+.htb-main-badge {
+    width: 550px; /* On augmente significativement la taille */
+    max-width: 95%; /* Sécurité pour le mobile */
+    height: auto;
+    border: 1px solid #9fef00;
+    filter: drop-shadow(0 0 10px rgba(159, 239, 0, 0.2));
+    transition: all 0.4s ease-in-out;
+}
+
+.htb-main-badge:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 25px rgba(159, 239, 0, 0.4));
+    border-color: #fff;
+}
+
+/* Centrage du bouton */
+.htb-actions {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+/* On force le bouton à ne pas prendre toute la largeur pour rester élégant */
+.inline-btn {
+    display: inline-block !important;
+    min-width: 250px;
+    text-align: center;
+    text-decoration: none;
+}
+
+/*RootMe*/
+.rootme-display {
+    display: flex;
+    justify-content: center;
+    margin: 35px 0;
+}
+
+.rootme-main-img {
+    width: 750px;
+    max-width: 95%; /* Sécurité pour que l'image s'adapte aux petits écrans */
+    height: auto;
+    border: 1px solid #444;
+    filter: grayscale(100%) brightness(0.8);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: block;
+    margin: 0 auto;  /* Garantit le centrage horizontal */
+}
+
+.rootme-main-img:hover {
+    filter: grayscale(0%) brightness(1);
+    border-color: #ff0000;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+.rootme-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#rootme .val {
+    color: #fff;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+/*HackerOne*/
+/* On cible spécifiquement les badges dans la grille HackerOne */
+#grid-h1 .badge-img {
+    background-color: rgba(255, 255, 255, 0.95); /* Fond blanc plus opaque pour le contraste */
+    border-radius: 50%;
+
+    /* On augmente le padding pour que le logo soit plus petit à l'intérieur du cercle */
+    padding: 15px;
+
+    border: 2px solid #00a3ff;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+
+    /* Taille réduite pour éviter que ce soit coupé */
+    width: 90px;
+    height: 90px;
+
+    /* Garde les proportions du logo intactes */
+    object-fit: contain;
+    transition: all 0.3s ease;
+}
+
+/* On ajuste le wrapper pour qu'il n'y ai pas de débordement */
+#grid-h1 .badge-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+}
+
+/* Effet au survol */
+#grid-h1 .badge-item:hover .badge-img {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.6));
+    border-color: #ffffff;
+}
+
+/* Labels et Tooltips */
+#grid-h1 .badge-label {
+    color: white;
+    text-shadow: 0 0 5px rgba(0, 163, 255, 0.2);
+    margin-top: 10px;
+}
+
+#grid-h1 .badge-tooltip {
+    border-color: #00a3ff;
+    color: white;
+    bottom: 120%; /* Remonte un peu l'infobulle */
+}
+
+/* Centrer le bouton HackerOne */
+.h1-actions {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.h1-actions .view-more {
+    display: inline-block;
+    min-width: 250px;
+    text-align: center;
+    text-decoration: none;
+}
+
+/*CTF*/
+/* Utilisation de la même grille que pour les badges */
+#grid-ctf {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 50px 30px;
+    justify-items: center;
+    margin-top: 40px;
+    padding-bottom: 50px;
+}
+
+/* --- CARTE CTF INDIVIDUELLE --- */
+.ctf-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 200px;
+    text-align: center;
+}
+
+/* --- CONTENEUR DE L'IMAGE / LOGO --- */
+.ctf-badge-wrapper {
+    width: 120px;
+    height: 120px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid #333;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.ctf-img {
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
+    filter: grayscale(0.5); /* Effet sobre par défaut */
+    transition: all 0.3s ease;
+}
+
+/* --- INFOS TEXTUELLES --- */
+.ctf-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    width: 100%;
+}
+
+/* Nom du CTF (Lien) */
+.ctf-name-link {
+    text-decoration: none;
+    margin-bottom: 2px;
+}
+
+.ctf-name {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+}
+
+/* Classement (Rank / Total) */
+.ctf-rank-text {
+    color: #ff0000;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    font-size: 0.9rem;
+    background: rgba(255, 0, 0, 0.1);
+    padding: 3px 10px;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 0, 0, 0.2);
+}
+
+/* Liste des statistiques (Format, Durée) */
+.ctf-stats-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin: 8px 0;
+}
+
+.ctf-stats-list span {
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+/* --- LIEN WRITE-UP ET EVENT LINK--- */
+.ctf-link {
+    margin-top: 10px;
+    color: #ff0000; 
+    font-size: 0.9rem;
+    text-decoration: none;
+    font-family: 'Courier New', monospace;
+    border: 1px dashed #ff0000;
+    padding: 5px 12px;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.ctf-link:hover {
+    background-color: rgba(255, 0, 0, 0.1);
+    border-style: solid; /* Passe de pointillé à plein */
+    color: #fff;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.5), inset 0 0 10px rgba(255, 0, 0, 0.3);
+    transform: scale(1.05);
+    text-shadow: 0 0 5px #fff;
+}
+
+.ctf-item:hover .ctf-badge-wrapper {
+    border-color: #ff0000;
+    transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 0, 0, 0.2);
+}
+
+.ctf-item:hover .ctf-img {
+    filter: grayscale(0) brightness(1.2);
+    transform: scale(1.1);
+}
+
+.ctf-item:hover .ctf-name {
+    color: #ff0000;
+}
+
+/* --- CONTACT --- */
+.contact-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+.contact-card {
+    background: rgba(255, 255, 255, 0.02);
+    /* border: 1px solid #333;*/
+    padding: 40px;
+    /* border-radius: 12px; */
+    text-align: center;
+    max-width: 500px;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+}
+
+.contact-card:hover {
+    border-color: #0077b5; /* Bleu LinkedIn */
+    box-shadow: 0 0 20px rgba(0, 119, 181, 0.1);
+}
+
+.linkedin-icon {
+    font-size: 3.5rem;
+    color: #0077b5;
+    margin-bottom: 20px;
+}
+
+
+/* Bouton LinkedIn stylisé */
+.linkedin-btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background: transparent;
+    color: #0077b5;
+    border: 2px solid #0077b5;
+    text-decoration: none;
+    font-weight: bold;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 1px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.linkedin-btn:hover {
+    background: #0077b5;
+    color: #fff;
+    box-shadow: 0 0 15px rgba(0, 119, 181, 0.5);
+    transform: translateY(-3px);
+}

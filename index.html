@@ -3,10 +3,431 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="image/profil.png" type="image/gif">
     <title>MyPorfolio</title>
 </head>
 <body>
-    <h1>Hello World!</h1>
-    <p>This is my first Github Pages site</p>
+    <header class="header">
+        <div class="blurred-image"></div>
+        <div class="user">
+            <img src="image/profil.png" type="image/gif" alt="">
+            <h3>Ludovic HAVARD</h3>
+            <p>Ethical Hacker</p>
+        </div>
+    
+        <nav class="navbar">
+            <a href="#home">Home</a>
+            <a href="#about">Whoami</a>
+            <a href="#badges">Badges</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    
+    </header>
+
+    <main class="content">
+        <div class="kali-boot">
+            <div class="terminal-text">
+                <p>[ OK ] Started LVM event activation on device 253:0.</p>
+                <p>[ OK ] Reached target Local File Systems (Pre).</p>
+                <p>[ OK ] Starting Monitoring of LVM2 mirrors...</p>
+                <p>[ OK ] Started Monitoring of LVM2 mirrors.</p>
+                <p><span>kali-linux login:</span> root (automatic login)</p>
+                <p>Last login: Wed Feb 4 14:18:04 on tty1</p>
+                <p>Linux kali 6.5.0-kali3-amd64 #1 SMP PREEMPT_DYNAMIC</p>
+                <p class="command">root@kali:~# start_portfolio.sh</p>
+                <div class="loading-bar"><span></span></div>
+            </div>
+        </div>
+        
+        <section class="home" id="home">
+            <div class="terminal-static">
+                <span class="prompt">root@my-portfolio:~$</span>
+                <span class="command-text">systemctl start welcome.service</span>
+            </div>
+            
+            <div class="welcome-box">
+                <div class="image-container">
+                    <img src="image/welcome.png" alt="Welcome" class="welcome-img">
+                    <a href="CV/CV-Ludovic-HAVARD.pdf" download="CV-Ludovic-HAVARD" class="btn-cv">
+                        Télécharger le CV
+                    </a>
+
+                    <div class="social-icons">
+                        <a href="https://www.linkedin.com/in/ludovic-havard-541ba4231/" target="_blank" class="social-btn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://github.com/havard-ludovic" target="_blank" class="social-btn">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="about" id="about">
+            <div class="terminal-static">
+                <span class="prompt">root@my-portfolio:~$</span>
+                <span class="command-text">whoami</span>
+            </div>
+
+            <div class="whoami">
+                <h3 class="head">Ludovic HAVARD</h3>
+                <p class="dynamic-text">
+                    <span id="typed" class="typed"></span><span class="cursor">|</span>
+                </p>
+                <p class="description-text">
+                    Ingénieur en cybersécurité avec une spécialisation en pentests. Passionné par les audits techniques et l'analyse de vulnérabilités, j'aborde chaque mission avec curiosité et rigueur pour sécuriser au mieux les systèmes d'informations. Je renforce mes compétences quotidiennement via les CTF et le Bug Bounty.
+                </p>
+            </div>
+
+            <div class="terminal-static">
+                <span class="prompt">root@my-portfolio:~$</span>
+                <span class="command-text">cat EXPERIENCE.log</span>
+            </div>
+
+            <div class="log-switcher">
+                <div class="terminal-header">
+                    <span class="historique">[ HISTORIQUE DES MISSIONS ]</span>
+                </div>
+            
+                <div class="log-navigation">
+                    <button id="prevLog" class="nav-btn">[ < ]</button>
+                            <span id="logCounter" class="log-counter">LOG 01 / 04</span>
+                            <button id="nextLog" class="nav-btn">[ > ]</button>
+                </div>
+            
+                <div class="log-viewport">
+                    <div id="logContent" class="log-item active">
+                    </div>
+                </div>
+            </div>
+
+            <div class="terminal-static">
+                <span class="prompt">root@my-portfolio:~/tools$</span>
+                <span class="command-text">ls -la CYBERSECURITE_OFFENSIVE/</span>
+            </div>
+            
+            <div class="tools-container">
+                <div class="tools-table">
+                    <div class="tool-row">
+                        <div class="tool-category">Distributions</div>
+                        <div class="tool-icons">
+                            <div class="skill-item">
+                                <img src="./image/cyber_tools/kali-linux_logo.svg" alt="Kali">
+                                <span class="skill-name">Kali Linux</span>
+                            </div>
+                            <div class="skill-item">
+                                <img src="./image/cyber_tools/parrot-os_logo.svg" alt="Parrot">
+                                <span class="skill-name">Parrot OS</span>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div class="tool-row">
+                        <div class="tool-category">Reconnaissance</div>
+                        <div class="tool-icons">
+                            <div class="skill-item">
+                                <img src="./image/cyber_tools/nmap_logo.svg" alt="Nmap">
+                                <span class="skill-name">Nmap</span>
+                            </div>
+                            <div class="skill-item">
+                                <img src="./image/cyber_tools/ffuf-logo.svg" alt="Ffuf">
+                                <span class="skill-name">Ffuf</span>
+                            </div>
+                            <div class="skill-item">
+                                <img src="./image/cyber_tools/smbmap-logo.svg" alt="Smbmap">
+                                <span class="skill-name">Smbmap</span>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div class="tool-row">
+                        <div class="tool-category">Analyse & Exploitation</div>
+                        <div class="tool-icons">
+                            <div class="skill-item">
+                                <img src="./image/cyber_tools/metasploit-framework-logo.svg" alt="Metasploit">
+                                <span class="skill-name">Metasploit</span>
+                            </div>
+                            <div class="skill-item">
+                                <img src="./image/cyber_tools/burpsuite-logo.svg" alt="Burp Suite">
+                                <span class="skill-name">Burp Suite</span>
+                            </div>
+                            <div class="skill-item">
+                                <img src="./image/cyber_tools/sqlmap-logo.svg" alt="Sqlmap">
+                                <span class="skill-name">SQLmap</span>
+                            </div>
+                            <div class="skill-item">
+                                <img src="./image/cyber_tools/wireshark-logo.svg" alt="Wireshark">
+                                <span class="skill-name">Wireshark</span>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div class="tool-row">
+                        <div class="tool-category">Bruteforce</div>
+                        <div class="tool-icons">
+                            <div class="skill-item">
+                                <img src="./image/cyber_tools/hashcat-logo.svg" alt="Hashcat">
+                                <span class="skill-name">Hachcat</span>
+                            </div>
+                            <div class="skill-item">
+                                <img src="./image/cyber_tools/john-logo.svg" alt="John the Ripper">
+                                <span class="skill-name">John the Ripper</span>
+                            </div>
+                            <div class="skill-item">
+                                <img src="./image/cyber_tools/crackmapexec-logo.svg" alt="CrackMapExec">
+                                <span class="skill-name">CrackMapExec</span>
+                            </div>
+                            <div class="skill-item">
+                                <img src="./image/cyber_tools/hydra-logo.svg" alt="Hydra">
+                                <span class="skill-name">Hydra</span>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div class="tool-row">
+                        <div class="tool-category">Post-exploitation</div>
+                        <div class="tool-icons">
+                            <div class="skill-item">
+                                <img src="./image/cyber_tools/netcat-logo.svg" alt="Netcat">
+                                <span class="skill-name">Netcat</span>
+                            </div>
+                            <div class="skill-item">
+                                <img src="./image/cyber_tools/mimikatz-logo.svg" alt="Mimikatz">
+                                <span class="skill-name">Mimikatz</span>
+                            </div>
+                            <div class="skill-item">
+                                <img src="./image/cyber_tools/bloodhound-logo.svg" alt="BloodHound">
+                                <span class="skill-name">BloodHound</span>
+                            </div>
+                            <div class="skill-item">
+                                <img src="./image/cyber_tools/evil-winrm-logo.svg" alt="Evil-WinRM">
+                                <span class="skill-name">Evil-WinRM</span>
+                            </div>
+                            <div class="skill-item">
+                                <img src="./image/cyber_tools/impacket-logo.svg" alt="Impacket">
+                                <span class="skill-name">Impacket</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="terminal-static">
+                <span class="prompt">root@my-portfolio:~/skills$</span>
+                <span class="command-text">ls -la STACK_TECHNIQUE/</span>
+            </div>
+
+            <div class="tools-container">
+                <div class="tools-table">
+                    <div class="tool-row">
+                        <div class="tool-category">Langages de programmation</div>
+                        <div class="tool-icons">
+                            <div class="skill-item">
+                                <img src="./image/stack_technique/python-logo.svg" alt="Python">
+                                <span class="skill-name">Python</span>
+                            </div>
+                            <div class="skill-item">
+                                <img src="./image/stack_technique/bash-logo.svg" alt="Bash">
+                                <span class="skill-name">Bash</span>
+                            </div>
+                            <div class="skill-item">
+                                <img src="./image/stack_technique/c-logo.svg" alt="C">
+                                <span class="skill-name">C</span>
+                            </div>
+                            <div class="skill-item">
+                                <img src="./image/stack_technique/cplusplus-logo.svg" alt="C++">
+                                <span class="skill-name">C++</span>
+                            </div>
+                            <div class="skill-item">
+                                <img src="./image/stack_technique/csharp-logo.svg" alt="C#">
+                                <span class="skill-name">C#</span>
+                            </div>
+                            <div class="skill-item">
+                                <img src="./image/stack_technique/java-logo.svg" alt="Java">
+                                <span class="skill-name">Java</span>
+                            </div>
+                            <div class="skill-item">
+                                <img src="./image/stack_technique/html5-logo.svg" alt="HTML">
+                                <span class="skill-name">HTML5</span>
+                            </div>
+                            <div class="skill-item">
+                                <img src="./image/stack_technique/php-logo.svg" alt="PHP">
+                                <span class="skill-name">PHP</span>
+                            </div>
+                            <div class="skill-item">
+                                <img src="./image/stack_technique/javascript-logo.svg" alt="Javascript">
+                                <span class="skill-name">Javascript</span>
+                            </div>
+                            <div class="skill-item">
+                                <img src="./image/stack_technique/react-logo.svg" alt="React">
+                                <span class="skill-name">React</span>
+                            </div>
+                            <div class="skill-item">
+                                <img src="./image/stack_technique/nextjs-logo.svg" alt="Next.js" style="filter: invert(1);">
+                                <span class="skill-name">Next.js</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tool-row">
+                        <div class="tool-category">Base de données</div>
+                        <div class="tool-icons">
+                            <div class="skill-item">
+                                <img src="./image/stack_technique/mysql-logo.svg" alt="SQL">
+                                <span class="skill-name">SQL</span>
+                            </div>
+                            <div class="skill-item">
+                                <img src="./image/stack_technique/mongodb-logo.svg" alt="NoSQL">
+                                <span class="skill-name">NoSQL</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tool-row">
+                        <div class="tool-category">Solutions Business & Data</div>
+                        <div class="tool-icons">
+                            <div class="skill-item">
+                                <img src="./image/stack_technique/Powerapps-logo.svg" alt="Power Apps">
+                                <span class="skill-name">Power Apps</span>
+                            </div>
+                            <div class="skill-item">
+                                <img src="./image/stack_technique/Power_BI_logo.svg" alt="Power BI">
+                                <span class="skill-name">Power BI</span>
+                            </div>
+                            <div class="skill-item">
+                                <img src="./image/stack_technique/Excel_logo.svg" alt="Excel avancée">
+                                <span class="skill-name">Excel avancée</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tool-row">
+                        <div class="tool-category">Environnement & Versioning</div>
+                        <div class="tool-icons">
+                            <div class="skill-item">
+                                <img src="./image/stack_technique/Git_logo.svg" alt="Git">
+                                <span class="skill-name">Git</span>
+                            </div>
+                            <div class="skill-item">
+                                <img src="./image/stack_technique/Visual_Studio_Code_logo.svg" alt="Visual Studio Code">
+                                <span class="skill-name">Visual Studio Code</span>
+                            </div>
+                            <div class="skill-item">
+                                <img src="./image/stack_technique/Visual_Studio_logo.svg" alt="Visual Studio">
+                                <span class="skill-name">Visual Studio</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="badges" id="badges">
+            <div class="terminal-static">
+                <span class="prompt">root@my-portfolio:~$</span>
+                <span class="command-text">cat BADGES.txt</span>
+            </div>
+
+            <div class="badge-nav">
+                <button class="badge-btn active" onclick="showTab('bugbounty')">Bug Bounty</button>
+                <button class="badge-btn" onclick="showTab('ctf')">CTF</button>
+                <button class="badge-btn" onclick="showTab('htb-server')">HackTheBox</button>
+                <button class="badge-btn" onclick="showTab('rootme')">Root-Me</button>
+                <button class="badge-btn" onclick="showTab('htb-academy')">HackTheBox Academy</button>
+            </div>
+            
+            <div id="badge-content">
+                <div id="htb-academy" class="tab-content">
+                    <div class="gallery-grid" id="grid-academy">
+                        <img src="path/to/badge1.png" class="thumb" onclick="openModal(this.src)">
+                        <img src="path/to/badge2.png" class="thumb" onclick="openModal(this.src)">
+                        <img src="path/to/badge3.png" class="thumb extra hidden" onclick="openModal(this.src)">
+                    </div>
+                    <button class="view-more" onclick="toggleMore('grid-academy', this)">VOIR PLUS</button>
+                </div>
+            
+                <div id="htb-server" class="tab-content">
+                    <div class="htb-profile-container">
+                        <p class="terminal-text">> Initialisation de la connexion vers app.hackthebox.com...</p>
+                        <p class="terminal-text">> Utilisateur identifié : <span class="profil-name">lud7515</span></p>
+
+                        <div class="htb-stats-display">
+                            <a href="https://app.hackthebox.com/public/users/1701539" target="_blank">
+                                <img src="https://www.hackthebox.eu/badge/image/1701539" alt="HackTheBox Badge" class="htb-main-badge">
+                            </a>
+                        </div>
+
+                        <div class="htb-actions">
+                            <a href="https://app.hackthebox.com/public/users/1701539" target="_blank" class="view-more inline-btn">
+                                VOIR LE PROFIL COMPLET
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="rootme" class="tab-content">
+                    <div class="rootme-container">
+                        <p class="terminal-text">> Initialisation de la connexion vers RootMe.org</p>
+                        <p class="terminal-text">> Utilisateur identifié : <span class="profil-name">lud7515</span></p>
+                
+                        <div class="rootme-display">
+                            <a href="https://www.root-me.org/lud7515" target="_blank" class="rootme-stats-link">
+                                <img src="/image/badge/rootme/rootme.png" alt="Root-Me Statistics" class="rootme-main-img">
+                            </a>
+                        </div>
+                
+                        <div class="rootme-actions">
+                            <a href="https://www.root-me.org/lud7515" target="_blank" class="view-more inline-btn">
+                                VOIR LE PROFIL COMPLET
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="ctf" class="tab-content">
+                    <p class="terminal-text">> extraction_donnees --type ctf_achievements --all</p>
+                    <div class="gallery-grid" id="grid-ctf"></div>
+                </div>
+
+                <div id="bugbounty" class="tab-content active">
+                    <div class="h1-container">
+                        <p class="terminal-text">> Initialisation du module Bug Bounty...</p>
+                        <p class="terminal-text">> Utilisateur identifié : <span class="profil-name">0daylight</span></p>
+                    
+                        <div class="gallery-grid" id="grid-h1"></div>
+                        
+                        <div class="h1-actions" style="margin-top: 30px;">
+                            <a href="https://hackerone.com/0daylight?type=user" target="_blank" class="view-more inline-btn">
+                                VOIR LE PROFIL HACKERONE
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact" id="contact">
+            <div class="terminal-static">
+                <span class="prompt">root@my-portfolio:~/contact$</span>
+                <span class="command-text">connect --target Ludovic_HAVARD --status ESTABLISHED</span>
+            </div>
+            <div class="contact-card">
+                <i class="fab fa-linkedin linkedin-icon"></i>
+                <div class="contact-actions">
+                    <a href="https://www.linkedin.com/in/ludovic-havard-541ba4231/" target="_blank" class="linkedin-btn">
+                        ME CONTACTER SUR LINKEDIN
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="script.js"></script>
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="fullImg">
+    </div>
 </body>
 </html>
