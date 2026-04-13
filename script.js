@@ -268,6 +268,8 @@ function renderH1Badges() {
 const ctfHistory = [
     { name: "HackDay 2024", rank: "38", img: null, totalTeams: "117", format: "Équipe école \"0xECE\"", duration: "2 jours", writeup: "https://github.com/havard-ludovic/CTF_Write-ups/tree/main/hackday_2024", eventLink: "https://ctftime.org/event/2265" },
     { name: "UofTCTF 2026", rank: "321", img: "./image/badge/CTF/uoftctf_2026.jpg", totalTeams: "1551", format: "Solo équipe \"404_Brain_Not_Found\"", duration: "2 jours", writeup: "https://github.com/havard-ludovic/CTF_Write-ups/tree/main/UofTCTF_2026", eventLink: "https://ctftime.org/event/2969/" },
+    { name: "picoCTF 2026", rank: "548", img: "./image/badge/CTF/picoctf_2026.jpg", totalTeams: "4911", format: "Solo", duration: "10 jours", writeup: null, eventLink: "https://play.picoctf.org/events/79/scoreboards" },
+    { name: "TamuCTF 2026", rank: "238", img: "./image/badge/CTF/TamuCTF_2026.png", totalTeams: "697", format: "Solo équipe \"404_Brain_Not_Found\"", duration: "2 jours", writeup: "https://github.com/havard-ludovic/CTF_Write-ups/tree/main/TamuCTF_2026", eventLink: "https://ctftime.org/event/3095/" }
 ];
 
 function renderCTF() {
