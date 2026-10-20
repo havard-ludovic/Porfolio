@@ -222,7 +222,7 @@ function renderHTBAcademyBadges() {
         badgeItem.className = `badge-item ${index > 5 ? 'extra hidden' : ''}`; //affiche 6 badges
 
         const shareURL = `https://academy.hackthebox.com/achievement/badge/${badge.id}`;
-        const imgURL = `https://academy.hackthebox.com/storage/badges/${badge.img_name}.png`;
+        const imgURL = `https://static.hackthebox.com/academy/badges/${badge.img_name}.png`;
 
         badgeItem.innerHTML = `
             <div class="badge-wrapper">
